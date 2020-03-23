@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+
+<div style = "width:100%;height:100%;">
+
+     <div class="container" style="height:20%;width:100%;left:45%;">
+			<div style="padding-top:5px;">
+				<h3>BANK INTEREST RATE PREDICTION</h2>
+			</div>
+	</div>
+	
+	<div class="login">
+
+     <!-- Main Input For Receiving Query to our ML -->
+					<form action="{{ url_for('predict')}}"method="post">
+					<input type="text" name="Amount.Requested" placeholder="Requested amount in rupees" required="required" />
+					
+					<input type="text" name="Amount.Funded.By.Investors" placeholder="Amount funded by investors in rupees" required="required" />
+					
+					<select id="loan.length" name="Loan Length" placeholder="Loan Length">
+                      <option value="60 months">60 months</option>
+                      <option value="36 months">36 months</option>     
+                    </select>
+                    </br>
+                    <select id="loan.purpose" name="Loan Purpose" placeholder="Loan Purpose">
+                      <option value="debt_consolidation">Debt consolidation</option>
+                      <option value="major_purchase">Major purchase</option>
+                      <option value="credit_card">Credit card</option>
+                      <option value="small_business">Small business</option>
+                      <option value="others">Others</option>     
+                    </select>
+                    </br>
+                    <select id="Home Ownership" name="Home Ownership" placeholder="Home Ownership">
+                      <option value="MORTGAGE">Mortgage</option>
+                      <option value="RENT">Rental</option>
+                      <option value="OWN">Own house</option>   
+                    </select>
+					</br>
+					<select id="State" name="State" placeholder="State">    
+                      <option value="CA">California</option>
+                      <option value="NY">New York</option>  
+                      <option value="TX">Texas</option>
+                      <option value="FL">Florida</option>
+                      <option value="IL">Illinois</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="GA">Georgia</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="MA">Massachusetts</option>     
+                    </select>
+					</br>
+					<input type="text" name="Open.CREDIT.Lines" placeholder="Number of open credit lines" required="required" />
+					
+					<input type="text" name="Inquiries.in.the.Last.6.Months" placeholder="Inquiries in the last 6 months" required="required" />
+					
+					<input type="text" name="Fico" placeholder="Fico or Credit Score" required="required" />
+
+					<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+					</form>
+					</br>
+					</br>
+					{{ prediction_text }}
+					
+
+					
+
+	</div>
+</div>
+
+</body>
+</html>
